@@ -3,6 +3,8 @@ import {
     ChakraProvider,
     theme,
     Text,
+    Avatar,
+    Badge,
     Button,
     Flex,
     Box,
@@ -77,6 +79,18 @@ export const App = () => (
                         w="full"
                         py={{ md: '5' }}>Help Center</Button>
 
+                    <Flex>
+                        <Avatar src="https://bit.ly/sage-adebayo" />
+                        <Box ml="3">
+                            <Text fontWeight="bold">
+                                David Noleto
+                                <Badge ml="1" colorScheme="green">
+                                    Active
+                                </Badge>
+                            </Text>
+                            <Text fontSize="sm" color="white">SRE Engineer</Text>
+                        </Box>
+                    </Flex>
 
                 </VStack>
             </Box>
