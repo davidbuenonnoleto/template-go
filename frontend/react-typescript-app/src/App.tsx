@@ -3,6 +3,7 @@ import {
     ChakraProvider,
     theme,
     Text,
+    Button,
     Flex,
     Box,
     VStack,
@@ -10,6 +11,8 @@ import {
     //Code,
     //Grid,
 } from "@chakra-ui/react"
+
+import { VscBell, VscReport } from 'react-icons/vsc'
 //import { ColorModeSwitcher } from "./ColorModeSwitcher"
 //import { Logo } from './Logo'
 //import { Content } from './Content'
@@ -19,41 +22,65 @@ import {
 export const App = () => (
     <ChakraProvider theme={theme}>
         <Flex>
-            <Box id="sidebar" bg="cyan.600" w={385} h={930}>
+            <Box id="sidebar" bg="blue.600" w={385} h={930}>
                 <VStack
-                    spacing={4}
-                    p={8}
+                    spacing={2}
+                    p={4}
                     align="stretch"
                 >
-                    <Box h="40px" bg="cyan.600" color="white">
+                    <Box h="40px" bg="blue.600" color="white">
                         <Text as="samp" fontSize="lg">(LOGO -STEADLY)</Text>
                     </Box>
-                    <Box h="40px" p={2} bg="cyan.800" color="white" rounded="md">
-                        <Text as="samp" fontSize="lg">Home</Text>
-                    </Box>
-                    <Box h="40px" p={2} bg="cyan.600" color="white" rounded="md">
-                        <Text as="samp" fontSize="lg">Traumas</Text>
-                    </Box>
-                    <Box h="40px" p={2} bg="cyan.600" color="white" rounded="md">
-                        <Text as="samp" fontSize="lg">Maps</Text>
-                    </Box>
+                    <Button
+                        colorScheme="blue"
+                        bg="blue.600"
+                        _hover={{ bg: "blue.400" }}
+                        size="md"
+                        w="full"
+                        py={{ md: '5' }}>Home</Button>
+                    <Button
+                        colorScheme="blue"
+                        bg="blue.600"
+                        _hover={{ bg: "blue.400" }}
+                        size="md"
+                        w="full"
+                        py={{ md: '5' }}>Traumas</Button>
+                    <Button
+                        colorScheme="blue"
+                        bg="blue.600"
+                        _hover={{ bg: "blue.400" }}
+                        size="md"
+                        w="full"
+                        py={{ md: '4' }}>Maps</Button>
                     <Divider borderColor="white" />
                 </VStack>
                 <VStack
-                    spacing={4}
-                    p={8}
+                    spacing={2}
+                    p={4}
                     align="stretch"
                 >
-                    <Box h="40px" p={2} bg="cyan.600" color="white" rounded="md">
-                        <Text as="samp" fontSize="lg">Notifications</Text>
-                    </Box>
-                    <Box h="40px" p={2} bg="cyan.600" color="white" rounded="md">
-                        <Text as="samp" fontSize="lg">Help Center</Text>
-                    </Box>
+                    <Button
+                        leftIcon={<VscBell />}
+                        bg="blue.600"
+                        _hover={{ bg: "blue.400" }}
+                        colorScheme="blue"
+                        size="md"
+                        w="full"
+                        py={{ md: '5' }}>Notifications</Button>
+
+                    <Button
+                        leftIcon={<VscReport />}
+                        bg="blue.600"
+                        _hover={{ bg: "blue.400" }}
+                        colorScheme="blue"
+                        size="md"
+                        w="full"
+                        py={{ md: '5' }}>Help Center</Button>
+
 
                 </VStack>
             </Box>
             <Box id="section-main-content" bg="white" w="100%" h={930}></Box>
-        </Flex>
+        </Flex >
     </ChakraProvider >
 )
