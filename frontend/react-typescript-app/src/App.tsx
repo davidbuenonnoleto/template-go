@@ -21,11 +21,6 @@ import {
 } from "@chakra-ui/react"
 
 import { VscBell, VscReport } from 'react-icons/vsc'
-//import { ColorModeSwitcher } from "./ColorModeSwitcher"
-//import { Logo } from './Logo'
-//import { Content } from './Content'
-//import { SocialMediaLinks } from './SocialMediaLinks'
-//import { Copyright } from './Copyright'
 import { Account } from './components/Account'
 import { Trauma } from './components/Trauma'
 import { Traumas } from './components/Traumas'
