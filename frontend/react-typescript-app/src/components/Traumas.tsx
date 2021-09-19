@@ -11,10 +11,11 @@ import {
     Td,
     Tbody
 } from '@chakra-ui/react'
+import { Link } from 'react-router-dom';
 
 export const Traumas = () => {
 
-    const [oneTrauma, setTrauma] = useState([]);
+    const [traumaList, setTrauma] = useState([]);
 
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/posts/')
@@ -24,11 +25,6 @@ export const Traumas = () => {
             .then(data => {
                 setTrauma(data);
             })
-            /*.then((response) => response.json())
-                .then((json) => console.log(json))
-                .then(response => {
-                    setTrauma([]);
-                })*/
             .catch(error => console.log(error));
     }, []);
 
@@ -43,9 +39,9 @@ export const Traumas = () => {
                     </Tr>
                 </Thead>
                 <Tbody>
-                    {oneTrauma.map((t, index) => (
+                    {traumaList.map((t, index) => (
                         <Tr key={index}>
-                            <Td> {t.title}</Td>
+                            <Td><Link to={`/traumas/${t.userId}`}>{t.title}</Link></Td>
                         </Tr>
                     )
                     )

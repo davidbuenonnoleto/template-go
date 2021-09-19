@@ -4,7 +4,7 @@ import {
     Switch,
     Route,
     Link,
-    //useParams
+    useParams
 } from "react-router-dom";
 
 import {
