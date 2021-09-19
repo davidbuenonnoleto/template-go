@@ -1,43 +1,57 @@
 
-import * as React from 'react'
-import { Box, Heading, Table, TableCaption, Thead, Tr, Th, Td, Tbody, Tfoot } from '@chakra-ui/react'
+import React, { useState, useEffect } from 'react'
+import {
+    Box,
+    Heading,
+    Table,
+    TableCaption,
+    Thead,
+    Tr,
+    Th,
+    Td,
+    Tbody
+} from '@chakra-ui/react'
 
-export const Traumas = () => (
-    <Box>
-        <Heading as="h4" size="md">Traumas</Heading>
-        <Table variant="simple">
-            <TableCaption>List of events that can trigger a trauma and its results</TableCaption>
-            <Thead>
-                <Tr>
-                    <Th>Kind</Th>
-                    <Th>Trigger</Th>
-                    <Th>Result</Th>
-                </Tr>
-            </Thead>
-            <Tbody>
-                <Tr>
-                    <Td>sexual abuse</Td>
-                    <Td>tension/stress</Td>
-                    <Td>pornography addiction</Td>
-                </Tr>
-                <Tr>
-                    <Td>domestics violence</Td>
-                    <Td>arguing</Td>
-                    <Td>violent communication</Td>
-                </Tr>
-                <Tr>
-                    <Td>car accident</Td>
-                    <Td>radical sports</Td>
-                    <Td>fear of anything</Td>
-                </Tr>
-            </Tbody>
-            <Tfoot>
-                <Tr>
-                    <Th>Accept</Th>
-                    <Th>Treat</Th>
-                    <Th>It will Change</Th>
-                </Tr>
-            </Tfoot>
-        </Table>
-    </Box>
-)
+export const Traumas = () => {
+
+    const [oneTrauma, setTrauma] = useState([]);
+
+    useEffect(() => {
+        fetch('https://jsonplaceholder.typicode.com/posts/')
+            .then(res => {
+                return res.json();
+            })
+            .then(data => {
+                setTrauma(data);
+            })
+            /*.then((response) => response.json())
+                .then((json) => console.log(json))
+                .then(response => {
+                    setTrauma([]);
+                })*/
+            .catch(error => console.log(error));
+    }, []);
+
+    return (
+        <Box>
+            <Heading as="h4" size="md">Traumas</Heading>
+            <Table variant="simple">
+                <TableCaption>List of events that can trigger a trauma and its results</TableCaption>
+                <Thead>
+                    <Tr>
+                        <Th>Description</Th>
+                    </Tr>
+                </Thead>
+                <Tbody>
+                    {oneTrauma.map((t, index) => (
+                        <Tr key={index}>
+                            <Td> {t.title}</Td>
+                        </Tr>
+                    )
+                    )
+                    }
+                </Tbody>
+            </Table>
+        </Box>
+    );
+}

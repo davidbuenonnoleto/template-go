@@ -2,7 +2,7 @@
 import * as React from 'react'
 import { Box, Tabs, TabList, Tab, TabPanels, TabPanel } from '@chakra-ui/react'
 
-export const Maps = () => (
+export const Map = () => (
     <Box>
         <Tabs isFitted size="md" variant="enclosed">
             <TabList>
