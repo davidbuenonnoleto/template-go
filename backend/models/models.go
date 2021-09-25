@@ -1,15 +1,8 @@
 package models
 
-import (
-	"encoding/json"
-	"fmt"
-	"reflect"
-	"strings"
+import "database/sql"
 
-	"github.com/go-playground/validator/v10"
-)
-
-type User struct {
+type user struct {
 	Id        string `json:"id" validate:"required"`
 	UserName  string `json:"username" validate:"required"`
 	Password  string `json:"password" validate:"required"`
@@ -17,74 +10,57 @@ type User struct {
 	LastName  string `json:"lastname" validate:"required"`
 }
 
-type Address struct {
-	Street string `json:"street" validate:"required"`
-	City   string `json:"city" validate:"required"`
-	State  string `json:"state" validate:"required"`
-	Phone  string `json:"phone" validate:"required"`
+func (u *user) getUser(db *sql.DB) error {
+	return db.QueryRow("SELECT firstname, lastname FROM users WHERE id=$1",
+		u.Id).Scan(&u.firstname, &u.lastname)
 }
 
-// use a single instance of Validate, it caches struct info
-var validate *validator.Validate
+func (p *user) updateUser(db *sql.DB) error {
+	_, err :=
+		db.Exec("UPDATE users SET firstname=$1, price=$2 WHERE id=$3",
+			p.Name, p.Price, p.ID)
 
-func main() {
+	return err
+}
 
-	//json encoding
-	var user User
-	json.NewEncoder("response").Encode(user)
-	//json encoding
+func (p *user) deleteProduct(db *sql.DB) error {
+	_, err := db.Exec("DELETE FROM products WHERE id=$1", p.ID)
 
-	validate = validator.New()
+	return err
+}
 
-	// register function to get tag name from json tags.
-	validate.RegisterTagNameFunc(func(fld reflect.StructField) string {
-		name := strings.SplitN(fld.Tag.Get("json"), ",", 2)[0]
-		if name == "-" {
-			return ""
-		}
-		return name
-	})
+func (p *user) createProduct(db *sql.DB) error {
+	err := db.QueryRow(
+		"INSERT INTO products(name, price) VALUES($1, $2) RETURNING id",
+		p.Name, p.Price).Scan(&p.ID)
 
-	// register validation for 'User'
-	// NOTE: only have to register a non-pointer type for 'User', validator
-	// internally dereferences during it's type checks.
-	validate.RegisterStructValidation(UserStructLevelValidation, User{})
-
-	user := &User{
-		FirstName: "",
-		LastName:  "",
-	}
-
-	// returns InvalidValidationError for bad validation input, nil or ValidationErrors ( []FieldError )
-	err := validate.Struct(user)
 	if err != nil {
-
-		// this check is only needed when your code could produce
-		// an invalid value for validation such as interface with nil
-		// value most including myself do not usually have code like this.
-		if _, ok := err.(*validator.InvalidValidationError); ok {
-			fmt.Println(err)
-			return
-		}
-
-		for _, err := range err.(validator.ValidationErrors) {
-
-			fmt.Println(err.Namespace()) // can differ when a custom TagNameFunc is registered or
-			fmt.Println(err.Field())     // by passing alt name to ReportError like below
-			fmt.Println(err.StructNamespace())
-			fmt.Println(err.StructField())
-			fmt.Println(err.Tag())
-			fmt.Println(err.ActualTag())
-			fmt.Println(err.Kind())
-			fmt.Println(err.Type())
-			fmt.Println(err.Value())
-			fmt.Println(err.Param())
-			fmt.Println()
-		}
-
-		// from here you can create your own error messages in whatever language you wish
-		return
+		return err
 	}
 
-	// save user to database
+	return nil
+}
+
+func getProducts(db *sql.DB, start, count int) ([]user, error) {
+	rows, err := db.Query(
+		"SELECT id, name,  price FROM products LIMIT $1 OFFSET $2",
+		count, start)
+
+	if err != nil {
+		return nil, err
+	}
+
+	defer rows.Close()
+
+	products := []user{}
+
+	for rows.Next() {
+		var p user
+		if err := rows.Scan(&p.ID, &p.Name, &p.Price); err != nil {
+			return nil, err
+		}
+		products = append(products, p)
+	}
+
+	return products, nil
 }
