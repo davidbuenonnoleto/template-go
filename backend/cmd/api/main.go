@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"os"
 )
 
 const version = "1.0.0"
@@ -35,12 +34,13 @@ func main() {
 	flag.StringVar(&cfg.env, "env", "development", "Appplication environment")
 	flag.Parse()
 
-	logger := log.New(os.Stdout, "", log.Ldate|log.Ltime)
+	//logger := log.New(os.Stdout, "", log.Ldate|log.Ltime)
 
-	app := &application{
-		config: cfg,
-		logger: logger,
-	}
+	/*
+		app := &application{
+			config: cfg,
+			logger: logger,
+		}*/
 
 	fmt.Println("Running")
 
