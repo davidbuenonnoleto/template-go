@@ -1,4 +1,4 @@
-package domain
+/*package domain
 
 import (
 	"database/sql"
@@ -15,14 +15,13 @@ type User struct {
 }
 
 func (u *User) getUser(db *sql.DB) error {
-	/*return db.QueryRow("SELECT firstname, lastname FROM users WHERE id=$1",
-	u.Id).Scan(&u.firstname, &u.lastname)*/
+	return db.QueryRow("SELECT firstname, lastname FROM users WHERE id=$1",
+	u.Id).Scan(&u.firstname, &u.lastname)
 	return nil
 }
 
-/*
 func (p *user) updateUser(db *sql.DB) error {
-	/*_, err :=
+	_, err :=
 	db.Exec("UPDATE users SET firstname=$1, price=$2 WHERE id=$3",
 		p.Name, p.Price, p.ID)
 
