@@ -3,20 +3,6 @@ This repo24 project primary goal is to be used not only as skeleton for micro se
 
 # Standard Go Project Layout
 
-Translations:
-
-* [한국어 문서](README_ko.md)
-* [简体中文](README_zh.md)
-* [正體中文](README_zh-TW.md)
-* [简体中文](README_zh-CN.md) - ???
-* [Français](README_fr.md)
-* [日本語](README_ja.md)
-* [Portuguese](README_ptBR.md)
-* [Español](README_es.md)
-* [Română](README_ro.md)
-* [Русский](README_ru.md)
-* [Türkçe](README_tr.md)
-
 ## Overview
 
 This is a basic layout for Go application projects. It's **`not an official standard defined by the core Go dev team`**; however, it is a set of common historical and emerging project layout patterns in the Go ecosystem. Some of these patterns are more popular than others. It also has a number of small enhancements along with several supporting directories common to any large enough real world application.
@@ -203,7 +189,3 @@ Don't confuse the project level `/src` directory with the `/src` directory Go us
 * Release - It will show the latest release number for your project. Change the github link to point to your project.
 
     [![Release](https://img.shields.io/github/release/golang-standards/project-layout.svg?style=flat-square)](https://github.com/golang-standards/project-layout/releases/latest)
-
-## Notes
-
-A more opinionated project template with sample/reusable configs, scripts and code is a WIP.
