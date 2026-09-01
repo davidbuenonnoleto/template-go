@@ -1,6 +1,11 @@
 MIT License
 
-Copyright (c) 2021 David Noleto
+Copyright (c) 2021 David Bueno
+
+This license covers only the original contributions in this repository. The project
+directory layout and the contents of README.md are copied from
+https://github.com/golang-standards/project-layout, which publishes under its own
+terms; nothing here is intended to relicense that work.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

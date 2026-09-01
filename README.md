@@ -1,5 +1,13 @@
-# repo24
-This repo24 project primary goal is to be used not only as skeleton for micro services based architectures but also is a source of truth to keep me updated on the Go ecosystem best practices, patterns, system design and ...
+# template-go
+
+A Go project scaffold I keep as a starting point for service work, and as a reference for
+Go ecosystem conventions, patterns, and system design.
+
+> **Attribution.** The directory layout and all documentation below are copied from
+> [golang-standards/project-layout](https://github.com/golang-standards/project-layout)
+> by [@kcq](https://github.com/kcq) and its contributors. That work is theirs, not mine —
+> this repository is a personal copy I keep for reference and reuse. Please star and
+> follow the original.
 
 # Standard Go Project Layout
 
